@@ -1,0 +1,91 @@
+﻿@model MobileViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row mb-2">
+    <div class="col-10 offset-2">
+        <h2>Edit Existing Mobile</h2>
+    </div>
+</div>
+<form asp-action="Edit" asp-controller="Mobiles" method="post" enctype="multipart/form-data">
+    <input asp-for="MobileId" type="hidden" />
+    <div class="form-group row mb-1">
+        
+        <div class="col-10 offset-2 mb-1">
+            <img src="~/uploads/@ViewBag.pic" width="80" class="rounded border p-1"/>
+        </div>
+    </div>
+    <div class="form-group row mb-1">
+        <label asp-for="Model" class="col-form-label col-2 text-end"></label>
+        <div class="col-4">
+            <input asp-for="Model" class="form-control" />
+        </div>
+        <div class="col-4">
+            <span asp-validation-for="Model" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row mb-1">
+        <label asp-for="PublishDate" class="col-form-label col-2 text-end"></label>
+        <div class="col-4">
+            <input type="text" asp-format="{0:yyyy-MM-dd}" asp-for="PublishDate" class="form-control" data-toggle="datepicker" />
+        </div>
+        <div class="col-4">
+            <span asp-validation-for="PublishDate" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row mb-1">
+        <label asp-for="Price" class="col-form-label col-2 text-end"></label>
+        <div class="col-4">
+            <input asp-for="Price" class="form-control" />
+        </div>
+        <div class="col-4">
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row mb-1">
+        <label asp-for="Picture" class="col-form-label col-2 text-end"></label>
+        <div class="col-4">
+            <input asp-for="Picture" type="file" class="form-control" />
+        </div>
+        
+    </div>
+    <div class="form-group row mb-1">
+        <label asp-for="BrandId" class="col-form-label col-2 text-end">Brand Name</label>
+        <div class="col-4">
+            <select asp-for="BrandId" asp-items="@(new SelectList(ViewBag.list,"BrandId","BrandName"))" class="form-select">
+                
+            </select>
+        </div>
+        <div class="col-4">
+            <span asp-validation-for="BrandId" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row mb-1">
+
+        <div class="col-10 offset-2">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </div>
+</form>
+<div class="col-10 offset-2">
+    <a class="btn btn-link px-0" asp-action="Index" asp-controller="Mobiles">Back to List </a>
+</div>
+@section scripts{
+    <script src="~/libs/jquery/jquery.js"></script>
+    <script src="~/libs/validate/jquery.validate.js"></script>
+    <script src="~/libs/validate/jquery.validate.unobtrusive.js"></script>
+    @*<script src="~/libs/ajax/jquery.unobtrusive-ajax.js"></script>*@
+    <script src="~/libs/datepicker/dist/datepicker.js"></script>
+    <script>
+        $(() => {
+            $('[data-toggle="datepicker"]').datepicker({ format: 'yyyy-MM-dd' });
+
+        })
+
+    </script>
+}
+
+@section styles{
+    <link href="~/libs/datepicker/dist/datepicker.css" rel="stylesheet" />
+}

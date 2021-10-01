@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Mobile>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Mobiles</h2>
+<div class="d-flex justify-content-end mb-1">
+    <a asp-action="Create" asp-controller="Mobiles" class="btn btn-sm btn-secondary">Create New</a>
+</div>
+<div class="row">
+    <div class="col-12">
+        <table class="table table-bordered">
+            <thead class="table-primary">
+                <tr>
+                    <th>Mobile</th>
+                    <th>Model</th>
+                    <th>Publish Date</th>
+                    <th>Price</th>
+                    <th>Brand Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var m in Model)
+                {
+                <tr>
+                    <td><img src="/uploads/@m.Picture" width="80" class="rounded-circle"/></td>
+                    <td>@m.Model</td>
+                    <td>@m.PublishDate.ToString("yyyy-MM-dd")</td>
+                    <td>@m.Price.ToString("0.00")</td>
+                    <td>@m.Brand.BrandName</td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="Mobiles" asp-route-id="@m.MobileId" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <a asp-action="Delete" asp-controller="Mobiles" asp-route-id="@m.MobileId" class="btn btn-sm btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+

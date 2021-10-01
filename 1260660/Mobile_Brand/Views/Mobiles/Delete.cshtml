@@ -1,0 +1,36 @@
+﻿@model Mobile
+@{
+    ViewData["Title"] = "Delete";
+}
+<div class="row">
+    <div class="col-12">
+        <h5>Delete @Model.Model. Are you sure?</h5>
+    </div>
+    
+    <div class="col-12">
+        <img src="/uploads/@Model.Picture" alt="Alternate Text" class="rounded border border-secondary my-2 p-1" width="80" />
+        <div class="mb-1">
+            <span class="fw-bold">Model : </span> @Model.Model
+        </div>
+        <div class="mb-1">
+            <span class="fw-bold">Price : </span> @Model.Price.ToString("0.00")
+        </div>
+        <div class="mb-1">
+            <span class="fw-bold">Publish Date : </span> @Model.PublishDate.ToString("yyyy-MM-dd")
+        </div>
+        <div class="mb-1">
+            <span class="fw-bold">Brand Name : </span> @Model.Brand.BrandName
+        </div>
+        <form asp-controller="Mobiles" asp-action="Delete" method="post">
+            <input type="hidden" asp-for="MobileId" />
+            <div class="my-1">
+                <button type="submit" class="btn btn-sm btn-outline-danger">Yes Delete</button>
+            </div>
+        </form>
+    </div> 
+    <div class="col-12 ">
+        <a class="btn btn-sm btn-link px-0" asp-controller="Mobiles" asp-action="Index">Back to list</a>
+    </div>
+</div>
+
+

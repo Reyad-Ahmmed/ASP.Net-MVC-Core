@@ -1,0 +1,42 @@
+﻿@model RegisterVModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row">
+    <div class="col-10 offset-2">
+        <h1 class="text-primary">Registration Form</h1>
+    </div>
+</div>
+
+<form asp-action="Register" asp-controller="Account" method="post">
+    <div class="col-10 offset-2 text-danger" asp-validation-summary="All"></div>
+    <div class="form-group row mb-1">
+        <label asp-for="Username" class="col-form-label col-2 text-end"></label>
+        <div class="col-4">
+            <input asp-for="Username" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row mb-1">
+        <label asp-for="Password" class="col-form-label col-2 text-end"></label>
+        <div class="col-4">
+            <input asp-for="Password" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row mb-1">
+        <label asp-for="ConfirmPassword" class="col-form-label col-2 text-end"></label>
+        <div class="col-4">
+            <input asp-for="ConfirmPassword" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-10 offset-2">
+            <button type="submit" class=" btn btn-sm btn-outline-primary">Register</button>
+        </div>
+        <div class="col-10 offset-2">
+            Already have an account<a asp-action="Login" asp-controller="Account" class="btn btn-link fw-bold">Login Now</a>
+        </div>
+    </div>
+</form>
+
+

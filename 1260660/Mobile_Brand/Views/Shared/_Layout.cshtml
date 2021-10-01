@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <environment include="Development">
+        <link href="~/libs/bootstrap/css/bootstrap.css" rel="stylesheet" />
+        <script src="~/libs/bootstrap/js/bootstrap.bundle.js"></script>
+        <style>
+            body{
+                padding-top:70px;
+            }
+            .main{
+                min-height:calc(100vh - 140px);
+            }
+        </style>
+        @RenderSection("styles",false)
+    </environment>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light navbar-expand-md shadow fixed-top">
+        <div class="container-fluid">
+            <span class="navbar-brand">Smart Mobile</span>
+            <div class="navbar-collapse collapse ">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a asp-controller="Home" asp-action="Index" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a asp-controller="Brands" asp-action="Index" class="nav-link">Brand</a></li>
+                    <li class="nav-item"><a asp-controller="Mobiles" asp-action="Index" class="nav-link">Mobile</a></li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item"><a asp-controller="Account" asp-action="Logout" class="nav-link" style="color:blueviolet">Logout</a></li>
+                    }
+                    else
+                    {
+                        <li class="nav-item"><a asp-controller="Account" asp-action="Login" class="nav-link">Login</a></li>
+                        <li class="nav-item"><a asp-controller="Account" asp-action="Register" class="nav-link">Register</a></li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid main">
+        @RenderBody()
+    </div>
+    <hr/>
+    <footer class="container-fluid">
+         &copy; @DateTime.Now.Year Smart Phone Application Core 2.2
+    </footer>
+    @RenderSection("scripts", false)
+</body>
+</html>

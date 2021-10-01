@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Brand>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h2>Brands</h2>
+    </div>
+</div>
+<div class="d-flex justify-content-end mb-1">
+    <a asp-action="Create" asp-controller="Brands" class="btn btn-sm btn-secondary">Create New</a>
+</div>
+<div class="row">
+    <div class="col-12">
+        <table class="table table-bordered">
+            <thead class="table-primary">
+                <tr>
+                    <th>Brand Name</th>
+                    <th>Country</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var b in Model)
+                {
+                <tr>
+                    <td>@b.BrandName</td>
+                    <td>@b.Country</td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="Brands" asp-route-id="@b.BrandId" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <a asp-action="Delete" asp-controller="Brands" asp-route-id="@b.BrandId" class="btn btn-sm btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+            
+        </table>
+    </div>
+</div>
